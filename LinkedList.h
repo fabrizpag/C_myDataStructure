@@ -8,8 +8,9 @@ typedef struct node{
 
 Nodo *newLinkedListInt(Nodo *inizio,int valore);
 Nodo *newLinkedListArrInt(Nodo *inizio,int arr[],int len);
-int push(Nodo *inizio,int v);
+int pushInt(Nodo *inizio,int v);
 int popInt(Nodo *inizio);
+int shiftInt(Nodo **inizio);
 void printListInt(Nodo *inizio);
 
 

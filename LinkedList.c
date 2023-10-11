@@ -36,7 +36,7 @@ Nodo *newLinkedListArrInt(Nodo *inizio,int arr[],int len){
     return inizio;
 }
 
-int push(Nodo *inizio,int v){
+int pushInt(Nodo *inizio,int v){
     Nodo *tmp;
     tmp= inizio;
     int ind;
@@ -59,6 +59,7 @@ int push(Nodo *inizio,int v){
         return 1;
     }
 }
+
 int popInt(Nodo *inizio){
     Nodo *tmp;
     tmp = inizio;
@@ -89,6 +90,42 @@ int popInt(Nodo *inizio){
         }
     }
 }
+
+int shiftInt(Nodo **inizio){
+    /*
+        Nodo *tmp;
+        tmp = *inizio;
+        int el;
+        while(true){
+            if(tmp->next == NULL){
+                tmp->index = tmp->index -1;
+                break;
+            }else{
+                tmp->index = tmp->index -1;
+                tmp = tmp->next;
+            }
+        }
+        tmp = *inizio;
+        el = tmp->val;
+        *inizio = (*inizio)->next;
+        free(tmp);
+        return el;
+    */
+    if (*inizio == NULL) {
+        return -1; // La lista è vuota, restituisci un valore appropriato
+    }
+    Nodo *tmp = *inizio;
+    int el = tmp->val;
+    *inizio = (*inizio)->next; // Avanza il puntatore all'inizio
+    free(tmp);
+    tmp = *inizio;
+    while (tmp != NULL) {
+        tmp->index--;
+        tmp = tmp->next;
+    }
+    return el;
+}
+
 
 void printListInt(Nodo *inizio){
     Nodo *temp;
