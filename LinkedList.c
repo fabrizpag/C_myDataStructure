@@ -3,6 +3,22 @@
 #include <stdlib.h>
 #include "LinkedList.h"
 
+const char *help(){
+    const char* help = 
+    "\n\ntypedef struct node{\n"
+    " int val;\n"
+    " int index;\n"
+    "struct node *next;\n"
+    "}Nodo\n"
+    "Nodo *newLinkedListInt(Nodo *inizio,int valore);\n"
+    "Nodo *newLinkedListArrInt(Nodo *inizio,int arr[],int len);\n"
+    "int pushInt(Nodo *inizio,int v);\n"
+    "int popInt(Nodo *inizio);\n"
+    "int shiftInt(Nodo **inizio); //  ricorda che se hai una LinkedList a, bisogna passare &a\n"
+    "void printListInt(Nodo *inizio);\n\n\n" ;
+    return help;
+}
+
 Nodo *newLinkedListInt(Nodo *inizio,int valore){
     inizio = malloc(sizeof(Nodo));
     inizio->val=valore;
