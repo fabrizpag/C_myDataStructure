@@ -35,6 +35,113 @@ int length(BSTNodo *radice){
     return 1 + sxSize + dxSize;
         
 }
+BSTNodo *findElement(BSTNodo *radice,int v){
+    if(radice == NULL){
+        return NULL;
+    }
+    if (radice->val==v){
+        return radice;
+    }
+    BSTNodo *leftTree = findElement(radice->sx,v);
+    if(leftTree != NULL){
+        return leftTree;
+    }
+    return findElement(radice->dx,v);
+}
+BSTNodo *findPrevElement(BSTNodo *radice,int v){
+    // funziona solo in BST con più di 1 elemento;
+    if(radice->sx == NULL){
+        return NULL;
+    }
+    if(radice->dx == NULL){
+        return NULL;
+    }
+    if(radice->sx->val==v){
+        return radice;
+    }
+    if(radice->dx->val==v){
+        return radice;
+    }
+    BSTNodo *leftTree = findPrevElement(radice->sx,v);
+    if(leftTree != NULL){
+        return leftTree;
+    }
+    return findPrevElement(radice->dx,v);
+
+}
+
+BSTNodo *pushTopAndRebalance(BSTNodo *radice){
+    BSTNodo *nBST;
+    int h = heightBST(radice)+1;
+    int maxEl = pow(2, h)-1;
+    int *arr = (int *)malloc(maxEl * sizeof(int));
+
+    for (int i = 0; i < maxEl; i++) {
+        arr[i] = 0; 
+    }
+    
+    if(h==1){
+        free(radice);
+        return NULL;
+    }else{
+        int *a = arr;
+        inorderTraversalToArray(radice,a);
+    }
+    if(maxEl == 2){
+        free(radice);
+        nBST = newBST(nBST,arr[1]);
+        return nBST;
+    }else {
+        free(radice);
+        nBST = newBST(nBST,arr[1]);
+        for(int i =2;i<maxEl;i++){
+            pushInt(nBST,arr[i]);
+        }
+        return nBST;
+    }
+}
+
+BSTNodo *removeElement(BSTNodo *radice,int v){
+    BSTNodo *toRet;
+    BSTNodo *tmp1;
+    BSTNodo *tmp2;
+    BSTNodo *reb;
+    if(radice == NULL){
+        return NULL;
+    }
+    if(radice->sx==NULL&&radice->dx==NULL){
+        if(radice->val == v){
+            return NULL;
+        }else{
+            return radice;
+        }
+    }else{
+        if(radice->val == v){
+           toRet = pushTopAndRebalance(radice);
+        }else{
+          tmp1 = findElement(radice,v);
+          if(tmp1 == NULL){
+            return radice;
+          }else{
+            tmp2 = findPrevElement(radice,v);
+          }
+          if(tmp2->sx == tmp1){
+            tmp2->sx = NULL;
+            reb = pushTopAndRebalance(tmp1);
+            tmp2->sx = reb;
+            return radice;
+          }else{
+            tmp2->dx = NULL;
+            reb = pushTopAndRebalance(tmp1);
+            tmp2->dx = reb;
+            return radice;
+          }
+        }
+    }
+
+    
+}
+
 int pushInt(BSTNodo *radice,int v){
     if(radice->sx==NULL && radice->dx==NULL){
         BSTNodo *n = malloc(sizeof(BSTNodo));
@@ -117,7 +224,6 @@ void inorderTraversalToArray(BSTNodo *radice, int *array) {
 
 void printBST(BSTNodo *radice){
     int h = heightBST(radice)+1;
-    printf("altezza  bst: %d\n",h);
     int maxEl = pow(2, h)-1;
     int *arr = (int *)malloc(maxEl * sizeof(int));
 

@@ -12,3 +12,8 @@ void inorderTraversalToArray(BSTNodo *radice, int *array);
 void printBST(BSTNodo *radice);
 bool has(BSTNodo *radice,int v);
 int length(BSTNodo *radice);
+BSTNodo *findElement(BSTNodo *radice,int v);
+BSTNodo *findPrevElement(BSTNodo *radice,int v);
+BSTNodo *pushTopAndRebalance(BSTNodo *radice);
+BSTNodo *removeElement(BSTNodo *radice,int v);
+//removeElement ancora non funzionante
