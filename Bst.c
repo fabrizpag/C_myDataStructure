@@ -12,6 +12,29 @@ BSTNodo *newBST(BSTNodo *radice,int v){
     radice->index=1;
     return radice;
 }
+bool has(BSTNodo *radice,int v){
+    if (radice == NULL) {
+        return false; 
+    }
+    if (radice->val == v) {
+        return true;
+    }
+    if (v < radice->val) {
+        return has(radice->sx, v);
+    } else {
+        return has(radice->dx, v);
+    }
+}
+int length(BSTNodo *radice){
+    if(radice == NULL){
+        return 0;
+    }
+    int sxSize = length(radice->sx);
+    int dxSize = length(radice->dx);
+
+    return 1 + sxSize + dxSize;
+        
+}
 int pushInt(BSTNodo *radice,int v){
     if(radice->sx==NULL && radice->dx==NULL){
         BSTNodo *n = malloc(sizeof(BSTNodo));

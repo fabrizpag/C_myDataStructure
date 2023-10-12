@@ -10,3 +10,5 @@ int pushInt(BSTNodo *radice,int v);
 int heightBST(BSTNodo *radice);
 void inorderTraversalToArray(BSTNodo *radice, int *array);
 void printBST(BSTNodo *radice);
+bool has(BSTNodo *radice,int v);
+int length(BSTNodo *radice);
