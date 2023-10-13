@@ -1,4 +1,4 @@
-// BinarySearchTree di prova
+/* libreria da eliminare*/
 
 typedef struct node{
         int val;
