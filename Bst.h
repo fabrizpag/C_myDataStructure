@@ -1,3 +1,5 @@
+// BinarySearchTree di prova
+
 typedef struct node{
         int val;
         int index;
@@ -16,4 +18,4 @@ BSTNodo *findElement(BSTNodo *radice,int v);
 BSTNodo *findPrevElement(BSTNodo *radice,int v);
 BSTNodo *pushTopAndRebalance(BSTNodo *radice);
 BSTNodo *removeElement(BSTNodo *radice,int v);
-//removeElement ancora non funzionante
+//alcune funzioni non sono funzionanti, altri non sono ottime

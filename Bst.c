@@ -75,7 +75,6 @@ BSTNodo *pushTopAndRebalance(BSTNodo *radice){
     int h = heightBST(radice)+1;
     int maxEl = pow(2, h)-1;
     int *arr = (int *)malloc(maxEl * sizeof(int));
-
     for (int i = 0; i < maxEl; i++) {
         arr[i] = 0; 
     }
@@ -86,19 +85,27 @@ BSTNodo *pushTopAndRebalance(BSTNodo *radice){
     }else{
         int *a = arr;
         inorderTraversalToArray(radice,a);
-    }
-    if(maxEl == 2){
-        free(radice);
-        nBST = newBST(nBST,arr[1]);
-        return nBST;
-    }else {
-        free(radice);
-        nBST = newBST(nBST,arr[1]);
-        for(int i =2;i<maxEl;i++){
-            pushInt(nBST,arr[i]);
+        if(maxEl == 2){
+            free(radice);
+            nBST = newBST(nBST,a[1]);
+            return nBST;
+        }else {
+            free(radice);
+            nBST = newBST(nBST,a[1]);
+            for(int i =2;i<maxEl;i++){
+                printf("el: %d",a[i]);
+                pushInt(nBST,a[i]); // crea un elemento 0 non richiesto
+                printf("\n ");
+                printBST(nBST);
+                printf("\n ");
+            }
+            printf("\n nuovo albero \n");
+            printBST(nBST);
+            printf("\n");
+            return nBST;
         }
-        return nBST;
     }
+
 }
 
 BSTNodo *removeElement(BSTNodo *radice,int v){
